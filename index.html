@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Steakhaus Nonnendamm | Argentinische Steaks vom Holzkohlegrill</title>
+<meta name="description" content="Argentinisches Steakhaus in Berlin-Siemensstadt. Steaks vom Holzkohlegrill, erlesene Weine, Buffet & Catering. Tradition seit 1982.">
+<link rel="icon" href="assets/brand/logo-small.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/scenes/hero.jpg">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#top" aria-label="Steakhaus Nonnendamm, zum Seitenanfang">
+    <img src="assets/brand/logo-small.png" alt="" width="44" height="43">
+    <span>
+      <span class="brand-small">Argentinisches</span>
+      <span class="brand-name">Steakhaus Nonnendamm</span>
+    </span>
+  </a>
+  <nav class="nav-links" aria-label="Hauptnavigation">
+    <a href="#chapter-huefte" data-chapter-link="huefte">Angebot</a>
+    <a href="#ueber-uns">Über uns</a>
+    <a href="#catering">Buffet &amp; Catering</a>
+    <a href="#presse">Presse</a>
+    <a href="#location">Kontakt</a>
+  </nav>
+  <a class="btn btn-line btn-small" href="https://www.steakhaus-nonnendamm.de/reservierung/">Jetzt reservieren <span aria-hidden="true">→</span></a>
+</header>
+
+<main id="top">
+
+  <!--
+    The journey: one pinned stage with five chapters (hero, three dishes, invitation).
+    Scrolling drives the camera moves and transitions (GSAP ScrollTrigger, see script.js);
+    every chapter is a looping video, so fire and smoke keep moving while the visitor reads.
+    With reduced motion the chapters simply stack as static sections.
+  -->
+  <section class="journey" id="journey" aria-label="Unsere Gerichte">
+    <div class="stage" id="stage">
+
+      <div class="chapter chapter-hero" id="chapter-hero" data-chapter="hero">
+        <video class="scene" data-src="assets/scenes/hero" poster="assets/scenes/hero.jpg" muted loop playsinline preload="auto" aria-hidden="true"></video>
+        <div class="chapter-copy hero-copy">
+          <img class="hero-logo" src="assets/brand/logo.png" alt="Logo Steakhaus Nonnendamm, Est. 1982" width="240" height="233">
+          <h1 class="intro-line">Steakhaus Nonnendamm</h1>
+          <p class="intro-line hero-sub">Steaks vom Holzkohlegrill.</p>
+          <p class="intro-line hero-sub accent">Tradition seit 1982.</p>
+          <a class="btn btn-line intro-line" href="https://www.steakhaus-nonnendamm.de/reservierung/">Jetzt reservieren <span aria-hidden="true">→</span></a>
+        </div>
+        <p class="scroll-cue intro-line" aria-hidden="true"><span class="line"></span>Scrollen und entdecken</p>
+      </div>
+
+      <div class="chapter chapter-dish side-left" id="chapter-huefte" data-chapter="huefte">
+        <video class="scene" data-src="assets/scenes/huefte" poster="assets/scenes/huefte.jpg" muted loop playsinline preload="metadata" aria-hidden="true" style="--pos: 72% 50%"></video>
+        <article class="chapter-copy dish-copy">
+          <h2>Hüftsteak</h2>
+          <p class="dish-meta"><span>ca. 150g</span><span class="price">19,50 €</span></p>
+          <p class="dish-desc">Mit gemischtem Salat, dazu wahlweise Pommes Frites oder gebackene Kartoffel.</p>
+        </article>
+      </div>
+
+      <div class="chapter chapter-dish side-right" id="chapter-spiess" data-chapter="spiess">
+        <video class="scene" data-src="assets/scenes/spiess" poster="assets/scenes/spiess.jpg" muted loop playsinline preload="metadata" aria-hidden="true" style="--pos: 26% 50%; --pos-m: 16% 50%"></video>
+        <article class="chapter-copy dish-copy">
+          <h2>Filetspieß</h2>
+          <p class="dish-meta"><span>ca. 250g</span><span class="price">23,50 €</span></p>
+          <p class="dish-desc">Hähnchenbrustfilet, Rinderfilet und Schweinefilet mit gemischtem Salat, dazu wahlweise Pommes Frites oder gebackene Kartoffel.</p>
+        </article>
+      </div>
+
+      <div class="chapter chapter-dish side-left" id="chapter-holzfaeller" data-chapter="holzfaeller">
+        <video class="scene" data-src="assets/scenes/holzfaeller" poster="assets/scenes/holzfaeller.jpg" muted loop playsinline preload="metadata" aria-hidden="true" style="--pos: 70% 60%"></video>
+        <article class="chapter-copy dish-copy">
+          <h2>Holzfäller&shy;steak</h2>
+          <p class="dish-meta"><span>ca. 200g</span><span class="price">19,90 €</span></p>
+          <p class="dish-desc">Schweinerückensteak mit Röstzwiebeln, Bratkartoffeln und gemischtem Salat.</p>
+        </article>
+      </div>
+
+      <div class="chapter chapter-final" id="chapter-final" data-chapter="final">
+        <video class="scene" data-src="assets/scenes/interior" poster="assets/scenes/interior.jpg" muted loop playsinline preload="metadata" aria-hidden="true"></video>
+        <div class="chapter-copy final-copy">
+          <img class="final-logo" src="assets/brand/logo.png" alt="" width="110" height="107">
+          <h2>Ihr Tisch im<br><em>Steakhaus Nonnendamm</em></h2>
+          <a class="btn btn-line" href="https://www.steakhaus-nonnendamm.de/reservierung/">Jetzt reservieren <span aria-hidden="true">→</span></a>
+          <address class="final-info">
+            <span>Nonnendammallee 98, 13629 Berlin</span>
+            <span>Täglich 12:00 bis 24:00 Uhr</span>
+            <span><a href="tel:+49303825023">+49 30 3825023</a></span>
+            <span><a href="mailto:info@steakhaus-nonnendamm.de">info@steakhaus-nonnendamm.de</a></span>
+          </address>
+          <p class="final-note">Reservierungen sind erst nach unserer Bestätigung gültig. Reservierungen für den gleichen Tag bitte telefonisch.</p>
+        </div>
+      </div>
+
+      <!-- Atmosphere layers shared by every chapter -->
+      <video class="smoke" data-src="assets/scenes/smoke" muted loop playsinline preload="auto" aria-hidden="true"></video>
+      <canvas class="embers" id="embers" aria-hidden="true"></canvas>
+      <div class="stage-shade" aria-hidden="true"></div>
+
+    </div>
+  </section>
+
+  <section class="slide slide-right" id="weine" aria-labelledby="weine-title">
+    <video class="slide-media" data-src="assets/scenes/wein" poster="assets/scenes/wein.jpg" muted loop playsinline preload="none" aria-hidden="true" style="--pos: 30% 50%"></video>
+    <div class="slide-copy">
+      <div class="slide-text reveal">
+        <p class="eyebrow">Weinkarte</p>
+        <h2 id="weine-title">Erlesene<br><em>Weine</em></h2>
+        <p>Genießen Sie eine Auswahl erlesener Weine, perfekt abgestimmt auf unsere Steakgerichte.</p>
+        <a class="btn btn-line" href="#reservierung">Tisch reservieren <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide slide-left" id="ambiente" aria-labelledby="ambiente-title">
+    <video class="slide-media" data-src="assets/scenes/ambiente" poster="assets/scenes/ambiente.jpg" muted loop playsinline preload="none" aria-hidden="true" style="--pos: 62% 50%"></video>
+    <div class="slide-copy">
+      <div class="slide-text reveal">
+        <p class="eyebrow">Ambiente</p>
+        <h2 id="ambiente-title">Gemütliche<br><em>Atmosphäre</em></h2>
+        <p>Lassen Sie sich in unserem einladenden Ambiente verwöhnen, ideal für jeden Anlass.</p>
+        <a class="btn btn-line" href="#reservierung">Tisch reservieren <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section about" id="ueber-uns">
+    <div class="wrap two-col">
+      <div class="reveal">
+        <p class="eyebrow">Über uns</p>
+        <h2>Willkommen in Ihrem argentinischen Steakhaus in Berlin.</h2>
+      </div>
+      <div class="reveal">
+        <p class="lead">Das Steakhaus Nonnendamm verbindet argentinische Grillkultur mit deutscher Gastfreundschaft.</p>
+        <p>Seit 1982 bedienen wir unsere Gäste mit Leidenschaft und Hingabe, um ein unvergessliches Geschmackserlebnis zu bieten. Bei uns finden Sie die besten Steaks, zubereitet auf traditionelle Weise und serviert in einem einladenden Ambiente.</p>
+        <p>Genießen Sie exquisite Steaks, frisch vom Holzkohlegrill, begleitet von erlesenen Weinen und knackigen Salaten.</p>
+        <a class="btn btn-line" href="https://www.steakhaus-nonnendamm.de/reservierung/">Jetzt reservieren <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section features">
+    <div class="wrap grid4">
+      <div class="feature reveal"><h3>Exquisite Steaks</h3><p>Speziell ausgewählte argentinische Steaks, zubereitet auf dem Holzkohlegrill.</p></div>
+      <div class="feature reveal"><h3>Erlesene Weine</h3><p>Eine Auswahl erlesener Weine, perfekt abgestimmt auf unsere Steakgerichte.</p></div>
+      <div class="feature reveal"><h3>Gemütliches Ambiente</h3><p>Ein einladendes Ambiente, ideal für jeden Anlass.</p></div>
+      <div class="feature reveal"><h3>Tradition seit 1982</h3><p>Die Tradition der argentinischen Grillkultur in jedem Biss.</p></div>
+    </div>
+  </section>
+
+  <!-- Content from the restaurant's Buffet & Catering flyer -->
+  <section class="section catering" id="catering">
+    <div class="wrap catering-grid">
+      <div class="catering-copy reveal">
+        <img class="catering-logo" src="assets/brand/logo.png" alt="" width="96" height="93">
+        <p class="eyebrow">Buffet &amp; Catering</p>
+        <h2>Für jeden Anlass.</h2>
+        <ul class="occasions">
+          <li>
+            <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="15" cy="10" r="5"/><circle cx="31" cy="10" r="5"/><circle cx="40" cy="22" r="3.5"/><path d="M9 19h12v14h-3v11h-6V33H9zM25 19h12v14h-3v11h-6V33h-3zM36 28h8v8h-2v8h-4v-8h-2z"/></svg>
+            Familienfeier
+          </li>
+          <li>
+            <svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke-width="3"><circle cx="18" cy="28" r="11"/><circle cx="30" cy="28" r="11"/><path d="M20 8l4-4 4 4-4 5z"/></svg>
+            Hochzeit
+          </li>
+          <li>
+            <svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke-width="3"><circle cx="16" cy="14" r="6"/><circle cx="32" cy="14" r="6"/><circle cx="24" cy="26" r="6"/><path d="M4 34c0-6 5-10 12-10M44 34c0-6-5-10-12-10M12 44c0-6 5-10 12-10s12 4 12 10z"/></svg>
+            Firmenrunde
+          </li>
+          <li>
+            <svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke-width="3"><path d="M14 44V20h8v24M26 44V16h8v28M18 14c-2-3 0-6 0-8 2 2 3 5 0 8zM30 10c-2-3 0-6 0-8 2 2 3 5 0 8zM8 44h32"/></svg>
+            Trauerfeier
+          </li>
+        </ul>
+        <ul class="checks">
+          <li><strong>Individuelle Buffets &amp; Menüs</strong> nach Ihren Wünschen</li>
+          <li><strong>Veranstaltungen</strong> für bis zu 120 Personen</li>
+          <li><strong>Lieferung</strong> auf Wunsch zu Ihnen nach Hause</li>
+        </ul>
+        <blockquote class="catering-quote">„Wir freuen uns auf Ihre Anfrage und beraten Sie gerne persönlich.“</blockquote>
+        <a class="btn btn-line" href="mailto:info@steakhaus-nonnendamm.de?subject=Anfrage%20Buffet%20%26%20Catering">Anfrage senden <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="catering-photo reveal">
+        <img src="assets/brand/buffet.jpg" alt="Buffet mit Fleischgerichten, Salaten und Beilagen in Warmhaltebehältern" width="660" height="1200" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section class="section press" id="presse">
+    <div class="wrap">
+      <p class="eyebrow reveal">Presse</p>
+      <h2 class="reveal">Was über uns geschrieben wird.</h2>
+      <div class="press-grid">
+        <article class="press-card reveal">
+          <p class="press-source">Parknews · Okt./Dez. 2009</p>
+          <h3>Mittagspause im Steakhaus Nonnendamm</h3>
+          <blockquote>„Wir verwenden nur argentinisches Fleisch der höchsten Qualitätsstufe.“</blockquote>
+          <p>Über das Steakhaus als Institution in Siemensstadt: Hüft-, Rump- und Filetsteak vom Holzkohlegrill, viele Beilagen und ein rustikales Ambiente mit Holzbalken und Backsteinmauern.</p>
+        </article>
+        <article class="press-card reveal">
+          <p class="press-source">BZ Berlin · März 2012</p>
+          <h3>Steakhouse am Nonnendamm</h3>
+          <p>Ein Restaurantbesuch mit Filetspieß von Lamm, Rind und Schwein, Salat von der Salatbar mit marinierten Champignons und gegrillten Auberginen, und Quarkstrudel zum Dessert.</p>
+        </article>
+        <article class="press-card reveal">
+          <p class="press-source">Groupon · 2013</p>
+          <h3>Genieße das beste Steak</h3>
+          <p>Steaks aus Argentinien, Plätze für mehr als 140 Gäste, im Sommer eine Terrasse und die Wahl zwischen Rind, Lamm, Pute, Entrecôte, Hüfte oder Filet.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reserve" id="reservierung">
+    <div class="wrap two-col">
+      <div class="reveal">
+        <p class="eyebrow">Reservierung</p>
+        <h2>Wir freuen uns auf Sie!</h2>
+        <p class="lead">Reservieren Sie direkt über unser Anfrageformular oder telefonisch unter <a href="tel:+49303825023">(030) 382 50 23</a>.</p>
+        <p class="muted">Bitte haben Sie Verständnis, dass Reservierungen erst nach unserer Bestätigung gültig sind. Reservierungen für den gleichen Tag nehmen wir gerne telefonisch entgegen.</p>
+      </div>
+
+      <!-- data-endpoint: the Formspree form URL (https://formspree.io/f/<id>). Requests are emailed to the address set in Formspree.
+           Leave it empty and the form falls back to opening a prefilled email. -->
+      <form class="res-form reveal" id="res-form" data-endpoint="" novalidate>
+        <h3>Reservierungsanfrage</h3>
+        <div class="field">
+          <label for="f-name">Name*</label>
+          <input id="f-name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="f-email">E-Mail*</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="f-phone">Rückrufnummer*</label>
+          <input id="f-phone" name="phone" type="tel" autocomplete="tel" required pattern="[0-9 +()/\-]{6,}">
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="f-date">Datum*</label>
+            <input id="f-date" name="date" type="date" required>
+          </div>
+          <div class="field">
+            <label for="f-time">Uhrzeit*</label>
+            <select id="f-time" name="time" required><option value="">Bitte wählen</option></select>
+          </div>
+          <div class="field">
+            <label for="f-guests">Anzahl Personen*</label>
+            <input id="f-guests" name="guests" type="number" min="1" max="140" inputmode="numeric" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-note">Anmerkung <span class="optional">(optional)</span></label>
+          <textarea id="f-note" name="note" rows="3" placeholder="z. B. Geburtstag, Kinderstuhl, Terrasse"></textarea>
+        </div>
+        <!-- Spam trap: hidden from people, bots fill it and Formspree drops the request -->
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+        <p class="form-hint">* Kennzeichnet erforderliche Felder. Ihre Angaben verwenden wir nur zur Bearbeitung Ihrer Anfrage, siehe <a href="impressum.html#datenschutz">Datenschutz</a>.</p>
+        <p class="form-msg" id="form-msg" role="status" aria-live="polite"></p>
+        <button class="btn" type="submit">Absenden</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="section location" id="location">
+    <div class="wrap two-col">
+      <div class="reveal">
+        <p class="eyebrow">Location</p>
+        <h2>Nonnendammallee 98</h2>
+        <p class="lead">13629 Berlin (Siemensstadt)</p>
+        <a class="btn btn-line" href="https://www.google.com/maps/search/?api=1&query=Nonnendammallee+98+13629+Berlin" target="_blank" rel="noopener">Route planen <span aria-hidden="true">→</span></a>
+      </div>
+      <dl class="info reveal">
+        <div><dt>Öffnungszeiten</dt><dd>Täglich 12:00 bis 24:00 Uhr</dd></div>
+        <div><dt>Telefon</dt><dd><a href="tel:+49303825023">+49 30 3825023</a></dd></div>
+        <div><dt>E-Mail</dt><dd><a href="mailto:info@steakhaus-nonnendamm.de">info@steakhaus-nonnendamm.de</a></dd></div>
+      </dl>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <span class="footer-brand"><img src="assets/brand/logo-small.png" alt="" width="36" height="35">© Argentinisches Steakhaus Nonnendamm</span>
+    <span class="footer-links">
+      <a href="https://www.instagram.com/steakhaus_nonnendamm" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.facebook.com/SteakhausNonnendamm" target="_blank" rel="noopener">Facebook</a>
+      <a href="impressum.html">Impressum / Datenschutz</a>
+    </span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

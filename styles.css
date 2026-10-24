@@ -1,0 +1,338 @@
+:root {
+  --bg: #0b0908;
+  --bg-2: #141110;
+  --ink: #f3ece4;          /* ivory */
+  --muted: #a89c90;
+  --line: rgba(243, 236, 228, 0.14);
+  --ember: #c98a55;        /* copper */
+  --ember-2: #dcaa7c;
+  --brand-red: #8e2a2a;    /* from the logo */
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --sans: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { color: inherit; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.05; letter-spacing: -0.01em; }
+h1 { font-size: clamp(2.8rem, 8vw, 6.5rem); }
+h2 { font-size: clamp(2.2rem, 5vw, 4rem); }
+h3 { font-size: 1.6rem; }
+p + p { margin-top: 1em; }
+
+.wrap { width: min(1180px, 100% - 32px); margin-inline: auto; }
+.eyebrow {
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ember-2); margin-bottom: 1.1rem;
+}
+.lead { font-size: 1.25rem; color: var(--ink); }
+h2 + .lead { margin-top: 1.4rem; }
+.muted { color: var(--muted); }
+
+.btn {
+  display: inline-block; margin-top: 2rem; padding: 0.95rem 1.8rem;
+  background: var(--ember); color: #160f0a; text-decoration: none;
+  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+  border-radius: 999px; transition: background 0.25s, transform 0.25s;
+}
+.btn:hover { background: var(--ember-2); transform: translateY(-2px); }
+.btn-line {
+  background: rgba(0, 0, 0, 0.25); color: var(--ink); border: 1px solid var(--ember);
+  border-radius: 0; font-family: var(--serif); font-size: 0.82rem; letter-spacing: 0.22em;
+}
+.btn-line span { color: var(--ember); margin-left: 10px; transition: margin 0.25s; }
+.btn-line:hover { background: var(--ember); color: #160f0a; }
+.btn-line:hover span { color: #160f0a; margin-left: 16px; }
+.btn-small { margin: 0; padding: 0.6rem 1.2rem; font-size: 0.7rem; }
+
+/* Nav */
+.nav {
+  position: fixed; inset: 0 0 auto 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  padding: 14px max(16px, calc((100% - 1180px) / 2));
+  transition: background 0.3s, backdrop-filter 0.3s;
+}
+.nav.scrolled { background: rgba(11, 9, 8, 0.82); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+.brand { text-decoration: none; display: flex; align-items: center; gap: 12px; line-height: 1.1; }
+.brand img { width: 44px; height: auto; }
+.brand > span { display: flex; flex-direction: column; }
+.brand-small { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ember-2); }
+.brand-name { font-family: var(--serif); font-size: 1.3rem; }
+.nav-links { display: flex; gap: 28px; }
+.nav-links a { text-decoration: none; font-size: 0.85rem; color: var(--muted); transition: color 0.2s; }
+.nav-links a:hover { color: var(--ink); }
+
+/* ---------- The journey: pinned stage with five video chapters ---------- */
+.journey { position: relative; }
+.stage { position: relative; height: 100vh; height: 100svh; overflow: hidden; background: #050404; }
+.chapter { position: absolute; inset: 0; visibility: hidden; opacity: 0; }
+.chapter-hero { visibility: visible; opacity: 1; }
+.scene {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: var(--pos, 50% 50%);
+  will-change: transform, opacity; transform-origin: 50% 55%;
+  background: #050404;
+  /* Slow handheld drift on top of the scroll moves (GSAP owns transform, this uses scale/translate) */
+  animation: drift 14s ease-in-out infinite alternate;
+}
+@keyframes drift {
+  0%   { scale: 1.02; translate: 0 0; }
+  50%  { scale: 1.05; translate: -0.6% -0.4%; }
+  100% { scale: 1.035; translate: 0.5% 0.3%; }
+}
+/* Per-chapter shading keeps text readable without boxes over the food */
+.chapter::after { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+.chapter-hero::after { background: linear-gradient(to bottom, rgba(5,4,4,0.85) 0%, rgba(5,4,4,0.35) 38%, rgba(5,4,4,0) 55%), linear-gradient(to top, rgba(5,4,4,0.7), rgba(5,4,4,0) 25%); }
+.side-left::after { background: linear-gradient(90deg, rgba(5,4,4,0.85) 0%, rgba(5,4,4,0.35) 38%, rgba(5,4,4,0) 55%); }
+.side-right::after { background: linear-gradient(270deg, rgba(5,4,4,0.85) 0%, rgba(5,4,4,0.35) 38%, rgba(5,4,4,0) 55%); }
+.chapter-final::after { background: radial-gradient(ellipse at 50% 50%, rgba(5,4,4,0.55), rgba(5,4,4,0.9) 75%); }
+
+.chapter-copy { position: absolute; z-index: 3; }
+.chapter-copy h1, .chapter-copy h2 {
+  text-transform: uppercase; letter-spacing: 0.04em; line-height: 1;
+  text-shadow: 0 4px 40px rgba(0,0,0,0.7);
+}
+.chapter-copy em { font-style: normal; color: var(--ember); }
+
+/* Hero: logo and lines above the steak, steak keeps the lower centre of the frame */
+.chapter-hero .scene { object-position: 50% 100%; transform-origin: 50% 85%; }
+.hero-copy { top: 0; left: 0; right: 0; padding-top: max(88px, 10vh); display: flex; flex-direction: column; align-items: center; text-align: center; }
+.hero-logo { width: clamp(92px, 10vw, 140px); height: auto; filter: drop-shadow(0 6px 30px rgba(0,0,0,0.6)); margin-bottom: 1.4rem; }
+.hero-copy h1 { font-size: clamp(2.2rem, 4.6vw, 4.2rem); letter-spacing: 0.08em; }
+.hero-sub { margin-top: 0.7rem; font-family: var(--serif); font-size: clamp(1.15rem, 1.8vw, 1.55rem); font-style: italic; color: #e8dfd5; }
+.hero-sub + .hero-sub { margin-top: 0.1rem; }
+.hero-sub.accent { color: var(--ember-2); }
+.hero-copy .btn { margin-top: 1.6rem; }
+.scroll-cue {
+  position: absolute; z-index: 3; left: 50%; bottom: 26px; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  font-size: 0.66rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--muted); white-space: nowrap;
+}
+.scroll-cue .line { width: 1px; height: 38px; background: linear-gradient(var(--ember), transparent); animation: drip 2.2s ease-in-out infinite; transform-origin: top; }
+@keyframes drip { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+
+/* Dishes: text in the negative space, alternating sides */
+.dish-copy { top: 0; bottom: 0; left: 0; right: 0; width: min(1180px, 100% - 32px); margin-inline: auto; display: flex; flex-direction: column; justify-content: center; pointer-events: none; }
+.dish-copy > * { width: min(27rem, 100%); max-width: 27rem; }
+/* Right-hand dishes: the text block sits against the right edge, clear of the progress rail */
+.side-right .dish-copy { align-items: flex-end; }
+.side-right .dish-copy > * { text-align: right; }
+
+.side-right .dish-meta { justify-content: flex-end; }
+.dish-copy h2 { font-size: clamp(2.4rem, 4.6vw, 4.2rem); hyphens: manual; }
+.dish-meta { display: flex; gap: 22px; align-items: baseline; font-family: var(--serif); font-size: 1.4rem; margin-top: 1rem; }
+.dish-meta .price { color: var(--ember-2); font-size: 1.7rem; }
+.dish-desc { margin-top: 0.9rem; color: #d6ccc1; font-size: 1rem; }
+
+/* Final invitation */
+.final-copy { inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 90px 16px 40px; }
+.final-logo { width: clamp(72px, 7vw, 100px); height: auto; margin-bottom: 1.2rem; }
+.final-copy h2 { font-size: clamp(2.2rem, 5vw, 4.4rem); }
+.final-copy .btn { margin-top: 1.8rem; }
+.final-info { font-style: normal; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 28px; margin-top: 2rem; font-family: var(--serif); font-size: 1.2rem; max-width: 760px; }
+.final-info a { text-decoration: none; }
+.final-info a:hover { color: var(--ember-2); }
+.final-note { margin-top: 1.2rem; font-size: 0.85rem; color: var(--muted); max-width: 46ch; }
+
+/* Atmosphere layers */
+.smoke {
+  /* Oversized so its sideways drift never reaches the frame; contrast pulls the clip's grey background down to black
+     and the mask feathers its borders, so only the smoke itself shows through the screen blend */
+  position: absolute; left: -15%; top: -15%; width: 130%; height: 130%; object-fit: cover; z-index: 5;
+  mix-blend-mode: screen; opacity: 0; pointer-events: none; filter: brightness(0.75) contrast(1.35) sepia(0.2);
+  -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 55%, transparent 100%);
+  mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 55%, transparent 100%);
+}
+.embers { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 6; pointer-events: none; }
+.stage-shade { position: absolute; inset: 0; z-index: 4; pointer-events: none; box-shadow: inset 0 0 160px 40px rgba(0,0,0,0.65); }
+
+/* Progress: hero + three dishes */
+.progress { position: absolute; z-index: 7; right: max(18px, calc((100% - 1180px) / 2 - 56px)); top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 22px; }
+.progress::before { content: ""; position: absolute; right: 5px; top: 6px; bottom: 6px; width: 1px; background: var(--line); }
+.progress button { position: relative; display: flex; align-items: center; justify-content: flex-end; gap: 12px; background: none; border: 0; cursor: pointer; color: var(--muted); font: 0.68rem/1 var(--sans); letter-spacing: 0.2em; text-transform: uppercase; }
+.progress .dot { order: 2; width: 11px; height: 11px; border-radius: 50%; border: 1px solid var(--muted); background: #050404; transition: background 0.3s, border-color 0.3s, transform 0.3s; }
+.progress .label { opacity: 0; transform: translateX(6px); transition: opacity 0.3s, transform 0.3s; white-space: nowrap; }
+.progress button:hover .label, .progress button.on .label { opacity: 1; transform: none; }
+.progress button.on { color: var(--ink); }
+.progress button.on .dot { background: var(--ember); border-color: var(--ember); transform: scale(1.2); }
+
+/* Reduced motion (and no-JS fallback): chapters stack as static, readable scenes */
+.rm .stage { height: auto; }
+.rm .chapter { position: relative; height: 100vh; height: 100svh; min-height: 560px; visibility: visible; opacity: 1; }
+.rm .smoke, .rm .embers, .rm .progress, .rm .scroll-cue { display: none; }
+
+/* Sections */
+.section { padding: clamp(80px, 12vw, 160px) 0; position: relative; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 96px); align-items: start; }
+.about p:not(.eyebrow):not(.lead) { color: var(--muted); }
+
+.grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.feature { background: var(--bg); padding: 40px 28px; }
+.feature h3 { margin: 0 0 0.7rem; }
+.feature p { color: var(--muted); font-size: 0.95rem; }
+
+/* Buffet & Catering, from the restaurant's flyer */
+.catering { background: var(--bg-2); }
+.catering-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
+.catering-logo { width: 96px; height: auto; margin-bottom: 1.4rem; }
+.occasions { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); margin: 2.2rem 0; border-block: 1px solid var(--line); }
+.occasions li { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 22px 6px; font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: #d6ccc1; text-align: center; }
+.occasions li + li { border-left: 1px solid var(--line); }
+.occasions svg { width: 40px; height: 40px; fill: var(--ember); stroke: var(--ember); stroke-linecap: round; stroke-linejoin: round; }
+.occasions svg[fill="none"] { fill: none; }
+.checks { list-style: none; display: grid; gap: 16px; }
+.checks li { position: relative; padding-left: 40px; color: var(--muted); }
+.checks li::before { content: "✓"; position: absolute; left: 0; top: 2px; width: 24px; height: 24px; border-radius: 50%; background: var(--ember); color: #160f0a; font-size: 0.8rem; font-weight: 700; display: grid; place-items: center; }
+.checks strong { display: block; color: var(--ink); font-weight: 600; }
+.catering-quote { margin-top: 2.2rem; font-family: var(--serif); font-size: 1.5rem; line-height: 1.3; font-style: italic; color: var(--ember-2); }
+.catering-photo img { width: 100%; height: auto; display: block; max-height: 720px; object-fit: cover; -webkit-mask-image: linear-gradient(to right, transparent, #000 18%); mask-image: linear-gradient(to right, transparent, #000 18%); }
+
+.info { display: grid; gap: 28px; }
+.info dt { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+.info dd { font-family: var(--serif); font-size: 1.7rem; margin-top: 4px; }
+.info a { text-decoration: none; }
+.info a:hover { color: var(--ember-2); }
+
+.press { background: var(--bg); }
+.press-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 3.5rem; }
+.press-card { border: 1px solid var(--line); padding: 32px 28px; background: var(--bg-2); }
+.press-source { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ember-2); }
+.press-card h3 { margin: 0.8rem 0 1rem; }
+.press-card blockquote { font-family: var(--serif); font-style: italic; font-size: 1.35rem; line-height: 1.3; margin-bottom: 1rem; }
+.press-card p:last-child { color: var(--muted); font-size: 0.95rem; }
+
+.reserve { background: var(--bg-2); }
+.reserve .lead a { color: var(--ember-2); text-decoration: none; white-space: nowrap; }
+.res-form { background: var(--bg); border: 1px solid var(--line); padding: clamp(24px, 4vw, 44px); }
+.res-form h3 { font-size: 2rem; margin-bottom: 1.6rem; }
+.field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; min-width: 0; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 14px; align-items: end; }
+.field-row .field:first-child { grid-column: 1 / -1; }
+.field label { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.optional { text-transform: none; letter-spacing: 0; }
+.field input, .field select, .field textarea {
+  width: 100%; padding: 13px 14px; font: inherit; font-size: 1rem; color: var(--ink);
+  background: var(--bg-2); border: 1px solid var(--line); border-radius: 4px;
+  transition: border-color 0.2s;
+  color-scheme: dark;
+}
+.field input, .field select { height: 50px; }
+.field textarea { resize: vertical; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--ember); }
+.field.invalid input, .field.invalid select { border-color: #e5484d; }
+.field .err { font-size: 0.8rem; color: #ff8a80; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.form-hint { font-size: 0.8rem; color: var(--muted); }
+.form-hint a { color: var(--ink); }
+.form-msg { margin-top: 1rem; font-size: 0.95rem; }
+.form-msg.ok { color: #8fd18f; }
+.form-msg.bad { color: #ff8a80; }
+.res-form .btn { border: 0; cursor: pointer; margin-top: 1.2rem; }
+.res-form .btn:disabled { opacity: 0.6; cursor: wait; }
+
+.footer { border-top: 1px solid var(--line); padding: 32px 0; font-size: 0.85rem; color: var(--muted); }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-brand { display: flex; align-items: center; gap: 12px; }
+.footer-links { display: flex; gap: 22px; flex-wrap: wrap; }
+.footer a { text-decoration: none; }
+.footer a:hover { color: var(--ink); }
+
+/* Scroll reveal */
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.9s ease, transform 0.9s cubic-bezier(.2,.7,.2,1); }
+.reveal.in { opacity: 1; transform: none; }
+
+/* Wine and atmosphere: two full-screen slides between the journey and "Über uns".
+   Video behind, a fine copper frame, and the text on a deep shadow on one side. */
+.slide { position: relative; min-height: 100svh; display: flex; align-items: center; overflow: hidden; isolation: isolate; background: #050404; }
+.slide-media {
+  position: absolute; inset: 0; width: 100%; height: 100%; z-index: -2;
+  object-fit: cover; object-position: var(--pos, 50% 50%);
+  transform: scale(1.12); transition: transform 2.6s cubic-bezier(.2,.7,.2,1);
+}
+.slide.in .slide-media { transform: scale(1); }
+.slide::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    linear-gradient(to bottom, var(--bg) 0%, rgba(11,9,8,0) 16%, rgba(11,9,8,0) 84%, var(--bg) 100%),
+    linear-gradient(var(--shade-dir, 270deg), rgba(5,4,4,0.94) 0%, rgba(5,4,4,0.7) 34%, rgba(5,4,4,0.1) 66%);
+}
+.slide-left { --shade-dir: 90deg; }
+.slide::after { content: ""; position: absolute; inset: clamp(14px, 2.4vw, 34px); border: 1px solid rgba(201,138,85,0.3); pointer-events: none; }
+.slide-copy { width: min(1180px, 100% - 32px); margin-inline: auto; display: flex; padding: 0 clamp(8px, 4vw, 56px); }
+.slide-right .slide-copy { justify-content: flex-end; text-align: right; }
+.slide-text { max-width: 30rem; }
+.slide-text h2 { font-size: clamp(2.6rem, 5.2vw, 4.8rem); line-height: 1.02; text-transform: uppercase; letter-spacing: 0.06em; }
+.slide-text h2 em { text-transform: none; letter-spacing: 0.01em; color: var(--ember-2); }
+.slide-text p:not(.eyebrow) { margin: 1.4rem 0 2.2rem; color: #d6ccc1; font-size: 1.05rem; line-height: 1.75; }
+@media (max-width: 700px), (max-width: 1100px) and (max-aspect-ratio: 4/3) {
+  .slide { align-items: flex-end; min-height: 92svh; }
+  .slide::before {
+    background:
+      linear-gradient(to bottom, var(--bg) 0%, rgba(11,9,8,0) 14%),
+      linear-gradient(to top, #050404 0%, rgba(5,4,4,0.9) 38%, rgba(5,4,4,0) 66%);
+  }
+  .slide-copy { padding: 0 20px 12vh; }
+  .slide-right .slide-copy { justify-content: flex-start; text-align: left; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .slide-media { transform: none; transition: none; }
+}
+
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .two-col, .catering-grid { grid-template-columns: 1fr; }
+  .grid4 { grid-template-columns: 1fr 1fr; }
+  .press-grid { grid-template-columns: 1fr; }
+  .catering-photo img { max-height: 420px; -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent); mask-image: linear-gradient(to bottom, #000 70%, transparent); }
+}
+@media (max-width: 700px), (max-width: 1100px) and (max-aspect-ratio: 4/3) {
+  /* Phones and narrow screens: food fills the upper part of the frame, text sits on a dark fade below it */
+  .chapter-dish .scene { height: 66%; top: 6%; object-position: var(--pos-m, var(--pos)); }
+  .chapter-dish::after, .side-right::after { background: linear-gradient(to top, #050404 0%, rgba(5,4,4,0.92) 34%, rgba(5,4,4,0) 58%), linear-gradient(to bottom, rgba(5,4,4,0.6), rgba(5,4,4,0) 20%); }
+  .dish-copy { justify-content: flex-end; padding-bottom: 9vh; }
+  .side-right .dish-copy { padding-right: 0; align-items: flex-start; }
+  .side-right .dish-copy > * { text-align: left; }
+
+  .side-right .dish-meta { justify-content: flex-start; }
+  .dish-copy > * { max-width: calc(100% - 40px); }
+}
+@media (max-width: 700px) {
+  .dish-copy h2 { font-size: 2.5rem; }
+  .dish-desc { font-size: 0.92rem; }
+  .chapter-hero .scene { object-position: 50% 100%; }
+  .hero-copy { padding-top: 92px; }
+  .progress { right: 10px; gap: 16px; }
+  .progress .label { display: none; }
+  .final-info { flex-direction: column; font-size: 1.1rem; }
+}
+@media (max-width: 560px) {
+  .brand img { width: 36px; }
+  .brand-name { font-size: 1.02rem; white-space: nowrap; }
+  .brand-small { font-size: 0.52rem; }
+  .nav .btn-small { white-space: nowrap; padding: 0.55rem 0.8rem; letter-spacing: 0.12em; font-size: 0.64rem; }
+  .nav .btn-small span { margin-left: 6px; }
+  .grid4 { grid-template-columns: 1fr; }
+  .occasions { grid-template-columns: 1fr 1fr; }
+  .occasions li:nth-child(3) { border-left: 0; }
+  .occasions li:nth-child(n+3) { border-top: 1px solid var(--line); }
+}
+@media (max-width: 430px) {
+  /* Small phones: logo alone, so the reservation button keeps its full label */
+  .brand > span { display: none; }
+  .brand img { width: 40px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+  .scroll-cue .line { animation: none; }
+  .scene { animation: none; }
+}
